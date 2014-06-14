@@ -1,0 +1,93 @@
+<!-- INCLUDE overall_header_pgp.html -->
+
+<h2 class="titlespace">{L_SEND_EMAIL_USER} {USERNAME}</h2>
+
+<!-- -->
+<div align=center>
+<font size="-1" face="Verdana, Arial, Helvetica, sans-serif">
+Scripts &copy; 2005-2006 Herbert Hanewinkel</font></div>
+
+<hr align=center>
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
+<form name="s" action="javascript:getkey()">
+<textarea name="pubkey" rows=14 cols=90 readonly style="display:none;">
+{USER_PGP_PUBLIC_KEY}
+</textarea>
+<div class="content">
+<fieldset class="fields2">
+<dl>
+	<dt><input type=submit value="Get Public Key Information"></dt>
+</dl>
+<dl>
+	<dt>Version:</dt>
+	<dd><input size=40 name="vers" readonly></dd>
+</dl>
+<dl>
+	<dt>User ID:</dt>
+	<dd><input size=40 name="user" readonly></dd>
+</dl>
+<dl>
+	<dt>Key ID (8 bytes in hex):</dt>
+	<dd><input size=40 name="keyid" readonly></dd>
+</dl>
+<dl>
+	<dt>Public Key type and values:</dt>
+	<dd><input size=40 name="pktype" readonly></dd>
+</dl>
+<dl>
+<dt><dd><input size=100 name="pkey" readonly><dd></dt>
+</dl>
+</fieldset>
+</form>
+
+<form name="t" method="post" action="javascript:encrypt()" id="post">
+
+	<div class="content">
+		<!-- IF ERROR_MESSAGE --><p class="error">{ERROR_MESSAGE}</p><!-- ENDIF -->
+		<fieldset class="fields2">
+		<!-- IF S_SEND_USER -->
+			<dl>
+				<dt><label>{L_RECIPIENT}:</label></dt>
+				<dd><strong>{USERNAME}</strong></dd>
+			</dl>
+			<dl>
+				<dt><label for="subject">{L_SUBJECT}:</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="subject" id="subject" size="50" tabindex="1" value="{SUBJECT}" /></dd>
+			</dl>
+		<!-- ELSE -->
+			<dl>
+				<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="email" id="email" size="50" maxlength="100" tabindex="2" value="{EMAIL}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="name">{L_REAL_NAME}:</label></dt>
+				<dd><input class="inputbox autowidth" type="text" name="name" id="name" size="50" tabindex="3" value="{NAME}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="lang">{L_DEST_LANG}:</label><br />
+					<span>{L_DEST_LANG_EXPLAIN}</span></dt>
+				<dd><select name="lang">{S_LANG_OPTIONS}</select></dd>
+			</dl>
+		<!-- ENDIF -->
+		<dl>
+			<dt><label for="message">{L_MESSAGE_BODY}:</label><br />
+			<span>{L_EMAIL_BODY_EXPLAIN}</span></dt>
+			<dd><textarea class="inputbox" name="text" id="message" rows="15" cols="76" tabindex="4">{MESSAGE}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><input type=submit value="Encrypt Message"></dt>
+			<dd><input size=8 name="textSize"> bytes. This took <input size=4 name="howLong"> seconds.</dd>
+		</dl>
+		<dl>
+			<dt><a href={S_POST_ACTION}>Weiter ohne Verschlüsselung</a></dt>
+			<dd>&nbsp;</dd>
+		</dl>
+		</fieldset>
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
